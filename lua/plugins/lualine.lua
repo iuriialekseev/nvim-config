@@ -21,9 +21,9 @@ return {
             path = 1,
           },
         },
-        lualine_x = { 'diff', 'diagnostics' },
-        lualine_y = { 'progress' },
-        lualine_z = {}
+        lualine_x = { 'diff' },
+        lualine_y = { 'diagnostics' },
+        lualine_z = { 'progress' },
       },
     })
   end

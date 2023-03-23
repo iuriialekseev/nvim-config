@@ -5,6 +5,9 @@ local opts = { noremap = true, silent = true }
 map('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 
+-- sync dependencies
+map('n', '<leader>u', ':Lazy sync | TSUpdateSync<cr>', opts)
+
 -- clear search highlight
 map('n', '<leader><leader>', ':noh<cr>', opts)
 

@@ -6,7 +6,7 @@ return {
   },
   keys = {
     { '<leader>n', '<cmd>:NvimTreeToggle<cr>' },
-    { '<leader>N', '<cmd>:NvimTreeFindFile<cr>' },
+    { '<leader>N', '<cmd>:NvimTreeFindFile | NvimTreeFocus<cr>' },
   },
   config = function()
     require("nvim-tree").setup({
