@@ -19,6 +19,9 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.shiftround = true
 
+-- limit amount of completions
+opt.pumheight = 15
+
 -- cursor "padding" measured in lines
 opt.scrolloff = 4
 
