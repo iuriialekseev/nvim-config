@@ -4,14 +4,16 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-path',
-    'hrsh7th/cmp-vsnip',
     'onsails/lspkind.nvim',
     'windwp/nvim-autopairs',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
   },
   config = function()
     local cmp = require('cmp')
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local lspkind = require('lspkind')
+    local luasnip = require('luasnip')
 
     lspkind.init({
       symbol_map = {
@@ -19,14 +21,10 @@ return {
       },
     })
 
-    local feedkey = function(key, mode)
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-    end
-
     cmp.setup({
       snippet = {
         expand = function(args)
-          vim.fn['vsnip#anonymous'](args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
       formatting = {
@@ -44,8 +42,8 @@ return {
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif vim.fn["vsnip#available"](1) == 1 then
-            feedkey("<Plug>(vsnip-expand-or-jump)", "")
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
           else
             fallback()
           end
@@ -53,8 +51,8 @@ return {
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-            feedkey("<Plug>(vsnip-jump-prev)", "")
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
           else
             fallback()
           end
@@ -62,8 +60,8 @@ return {
       }),
       sources = cmp.config.sources({
         { name = 'copilot' },
+        { name = 'luasnip' },
         { name = 'nvim_lsp' },
-        { name = 'vsnip' },
         { name = 'buffer' },
       })
     })

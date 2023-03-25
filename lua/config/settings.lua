@@ -7,7 +7,7 @@ opt.mouse = 'a'
 
 -- show relative/absolute line numbers
 opt.number = true
-opt.relativenumber = true
+-- opt.relativenumber = true
 
 -- smart case search
 opt.ignorecase = true
