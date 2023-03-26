@@ -6,9 +6,9 @@ return {
     'nvim-telescope/telescope-live-grep-args.nvim',
   },
   keys = {
-    { '<leader>f', '<cmd>Telescope find_files<cr>' },
-    { '<leader>l', '<cmd>Telescope live_grep_args<cr>' },
-    { '<leader>?', '<cmd>Telescope help_tags<cr>' },
+    { '<leader>f', ':Telescope find_files<cr>' },
+    { '<leader>l', ':Telescope live_grep_args<cr>' },
+    { '<leader>?', ':Telescope help_tags<cr>' },
   },
   config = function()
     local o = vim.o

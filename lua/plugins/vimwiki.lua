@@ -3,9 +3,9 @@ return {
   ft = 'markdown',
   keys = {
     -- align tables
-    { '<leader>tl', '<cmd>:s/\\v[^|]+/---/g<cr>i<esc><cmd>:noh<cr>' },
-    { '<leader>tr', '<cmd>:s/\\v[^|]+/---:/g<cr>i<esc><cmd>:noh<cr>' },
-    { '<leader>tm', '<cmd>:s/\\v[^|]+/:---:/g<cr>i<esc><cmd>:noh<cr>' },
+    { '<leader>tl', ':s/\\v[^|]+/---/g<cr>i<esc><cmd>:noh<cr>' },
+    { '<leader>tr', ':s/\\v[^|]+/---:/g<cr>i<esc><cmd>:noh<cr>' },
+    { '<leader>tm', ':s/\\v[^|]+/:---:/g<cr>i<esc><cmd>:noh<cr>' },
   },
   config = function()
     vim.g.vimwiki_list = {

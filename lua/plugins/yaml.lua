@@ -6,6 +6,6 @@ return {
   },
   ft = 'yaml',
   keys = {
-    { '<leader>y', '<cmd>YAMLYankKey +<cr>' },
+    { '<leader>y', ':YAMLYankKey +<cr>' },
   },
 }

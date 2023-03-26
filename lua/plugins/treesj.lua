@@ -4,8 +4,8 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   keys = {
-    { '<leader>j', '<cmd>:TSJJoin<cr>' },
-    { '<leader>s', '<cmd>:TSJSplit<cr>' },
+    { '<leader>j', ':TSJJoin<cr>' },
+    { '<leader>k', ':TSJSplit<cr>' },
   },
   config = function()
     require('treesj').setup({

@@ -5,8 +5,8 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { '<leader>n', '<cmd>:NvimTreeToggle<cr>' },
-    { '<leader>N', '<cmd>:NvimTreeFindFile<cr>' },
+    { '<leader>n', ':NvimTreeToggle<cr>' },
+    { '<leader>N', ':NvimTreeFindFile<cr>' },
   },
   config = function()
     require('nvim-tree').setup({
