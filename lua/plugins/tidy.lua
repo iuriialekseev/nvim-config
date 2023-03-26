@@ -2,6 +2,6 @@
 return {
   'mcauley-penney/tidy.nvim',
   config = function()
-    require("tidy").setup()
+    require('tidy').setup()
   end
 }

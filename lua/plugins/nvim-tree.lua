@@ -6,10 +6,10 @@ return {
   },
   keys = {
     { '<leader>n', '<cmd>:NvimTreeToggle<cr>' },
-    { '<leader>N', '<cmd>:NvimTreeFindFile | NvimTreeFocus<cr>' },
+    { '<leader>N', '<cmd>:NvimTreeFindFile<cr>' },
   },
   config = function()
-    require("nvim-tree").setup({
+    require('nvim-tree').setup({
       view = {
         adaptive_size = true,
         hide_root_folder = true,

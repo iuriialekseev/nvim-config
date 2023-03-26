@@ -8,7 +8,6 @@ return {
     { '<leader>f', '<cmd>Telescope find_files<cr>' },
     { '<leader>l', '<cmd>Telescope live_grep<cr>' },
     { '<leader>?', '<cmd>Telescope help_tags<cr>' },
-    { '<leader>b', '<cmd>Telescope buffers<cr>' },
   },
   config = function()
     local telescope = require('telescope')

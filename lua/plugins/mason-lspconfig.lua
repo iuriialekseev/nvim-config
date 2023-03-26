@@ -4,13 +4,13 @@ return {
     'williamboman/mason.nvim',
   },
   config = function()
-    require("mason-lspconfig").setup({
+    require('mason-lspconfig').setup({
       ensure_installed = {
-        'rust_analyzer',
-        'solargraph',
-        'lua_ls',
-        'taplo',
-        'tsserver',
+        'lua_ls', -- lua
+        'rust_analyzer', -- rust
+        'solargraph', -- ruby
+        'taplo', -- toml
+        'tsserver', -- js/ts
       },
     })
   end

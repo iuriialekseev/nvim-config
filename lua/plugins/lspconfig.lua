@@ -5,29 +5,43 @@ return {
     'hrsh7th/cmp-nvim-lsp'
   },
   config = function()
-    vim.api.nvim_create_autocmd('LspAttach', {
-      desc = 'LSP actions',
-      callback = function()
-        local bufmap = function(mode, lhs, rhs)
-          local opts = { buffer = true }
-          vim.keymap.set(mode, lhs, rhs, opts)
+    local api = vim.api
+    local map = vim.keymap.set
+    local diagnostic = vim.diagnostic
+
+    map('n', '<leader>d', diagnostic.open_float)
+    map('n', '<leader>e', diagnostic.setloclist)
+    map('n', '[d', diagnostic.goto_prev)
+    map('n', ']d', diagnostic.goto_next)
+
+    api.nvim_create_autocmd('LspAttach', {
+      group = api.nvim_create_augroup('UserLspConfig', {}),
+      callback = function(ev)
+        local buf = vim.lsp.buf
+        local opts = { buffer = ev.buf }
+        local format = function()
+          buf.format({ async = true })
+        end
+        local list_workspace_folders = function()
+          print(vim.inspect(buf.list_workspace_folders()))
         end
 
-        bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-        bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-        bufmap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-        bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-        bufmap('n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>')
-        bufmap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
-        bufmap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-        bufmap('v', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-        bufmap('n', '<leader>=', '<cmd>lua vim.lsp.buf.format({ async = true })<cr>')
-        bufmap('v', '<leader>=', '<cmd>lua vim.lsp.buf.format({ async = true })<cr>')
-        bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-        bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-        bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-      end
+        map('n', 'gD', buf.declaration, opts)
+        map('n', 'gd', buf.definition, opts)
+        map('n', 'gi', buf.implementation, opts)
+        map('n', 'gt', buf.type_definition, opts)
+        map('n', 'gr', buf.references, opts)
+        map('n', 'K', buf.hover, opts)
+        map('n', '<C-k>', buf.signature_help, opts)
+        map('n', '<leader>r', buf.rename, opts)
+        map('n', '<leader>a', buf.code_action, opts)
+        map('v', '<leader>a', buf.code_action, opts)
+        map('n', '<leader>=', format, opts)
+        map('v', '<leader>=', format, opts)
+        map('n', '<leader>wa', buf.add_workspace_folder, opts)
+        map('n', '<leader>wr', buf.remove_workspace_folder, opts)
+        map('n', '<leader>wl', list_workspace_folders, opts)
+      end,
     })
 
     local lspconfig = require('lspconfig')
@@ -55,10 +69,10 @@ return {
             version = 'LuaJIT',
           },
           diagnostics = {
-            globals = { 'vim', 'use' },
+            globals = { 'vim' },
           },
           workspace = {
-            library = vim.api.nvim_get_runtime_file('', true),
+            library = api.nvim_get_runtime_file('', true),
             checkThirdParty = false,
           },
           telemetry = {
@@ -70,7 +84,6 @@ return {
 
     lspconfig.rust_analyzer.setup {}
     lspconfig.taplo.setup {}
-
     lspconfig.tsserver.setup {}
   end,
 }

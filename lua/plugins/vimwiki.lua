@@ -1,6 +1,6 @@
 return {
   'vimwiki/vimwiki',
-  lazy = false,
+  ft = 'markdown',
   keys = {
     -- align tables
     { '<leader>tl', '<cmd>:s/\\v[^|]+/---/g<cr>i<esc><cmd>:noh<cr>' },
