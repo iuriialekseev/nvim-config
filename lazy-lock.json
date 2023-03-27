@@ -31,6 +31,7 @@
   "treesj": { "branch": "main", "commit": "29aac56d24bf9870f2ea337817c5542b56e21f16" },
   "vim-commentary": { "branch": "master", "commit": "e87cd90dc09c2a203e13af9704bd0ef79303d755" },
   "vim-fugitive": { "branch": "master", "commit": "9acbad1335ee6f30a8497733dcb2373c4550c8a2" },
+  "vim-rhubarb": { "branch": "master", "commit": "cad60fe382f3f501bbb28e113dfe8c0de6e77c75" },
   "vim-smoothie": { "branch": "master", "commit": "df1e324e9f3395c630c1c523d0555a01d2eb1b7e" },
   "vimwiki": { "branch": "dev", "commit": "dec6a9ecab3e5ec9ceff28b84cabb5c62d05ee9f" },
   "yaml.nvim": { "branch": "main", "commit": "ec53f8eabcce9ff42121ad64ff288af8d25f5010" }

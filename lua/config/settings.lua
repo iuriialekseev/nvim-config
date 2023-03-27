@@ -41,8 +41,8 @@ opt.clipboard = 'unnamedplus'
 -- netrw
 g.netrw_banner = 0
 g.netrw_liststyle = 3
-g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+-- g.loaded_netrw = 1
 
 -- set termguicolors to enable highlight groups
 opt.termguicolors = true
