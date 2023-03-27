@@ -24,7 +24,7 @@ map('n', '<leader>c', ':bd<cr>', opts)
 map('n', '<leader>C', ':%bd!|e#|bd!#<cr>', opts)
 
 -- quickfix
-map('n', '<leader>q', ':copen<cr>', opts)
+map('n', '<leader>q', ':copen | resize 10<cr>', opts)
 map('n', ']q', ':cnext<cr>', opts)
 map('n', '[q', ':cprev<cr>', opts)
 
