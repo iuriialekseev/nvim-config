@@ -1,5 +1,6 @@
 return {
   'vimwiki/vimwiki',
+  event = 'VeryLazy',
   ft = 'markdown',
   keys = {
     -- align tables
