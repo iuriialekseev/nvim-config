@@ -54,10 +54,14 @@ return {
       cmp_nvim_lsp.default_capabilities()
     )
 
+    lspconfig.pyright.setup {}
+
     lspconfig.solargraph.setup {
       settings = {
         solargraph = {
-          diagnostics = false
+          diagnostics = false,
+          formatting = true,
+          useBundler = true,
         }
       }
     }
@@ -82,8 +86,9 @@ return {
       },
     }
 
-    lspconfig.rust_analyzer.setup {}
     lspconfig.taplo.setup {}
     lspconfig.tsserver.setup {}
+    lspconfig.gopls.setup {}
+    lspconfig.rust_analyzer.setup {}
   end,
 }

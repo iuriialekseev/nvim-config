@@ -19,8 +19,8 @@ return {
             path = 1,
           },
         },
-        lualine_x = { 'diff' },
-        lualine_y = { 'diagnostics' },
+        lualine_x = { 'diff', 'diagnostics' },
+        lualine_y = { 'filetype' },
         lualine_z = { 'progress' },
       },
     })

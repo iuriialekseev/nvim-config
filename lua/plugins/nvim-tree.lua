@@ -11,14 +11,11 @@ return {
   },
   config = function()
     require('nvim-tree').setup({
+      renderer = {
+        root_folder_label = false,
+      },
       view = {
-        adaptive_size = true,
-        hide_root_folder = true,
-        mappings = {
-          list = {
-            { key = { '<C-]>', '=' }, action = 'cd' }
-          },
-        },
+        -- adaptive_size = true,
       },
       live_filter = {
         prefix = ' > ',

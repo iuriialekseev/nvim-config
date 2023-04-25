@@ -6,8 +6,10 @@ return {
   config = function()
     require('mason-lspconfig').setup({
       ensure_installed = {
+        'gopls', -- go
         'lua_ls', -- lua
-        'rust_analyzer', -- rust
+        'pyright', -- python'
+        'rust_analyzer', -- rust'
         'solargraph', -- ruby
         'taplo', -- toml
         'tsserver', -- js/ts

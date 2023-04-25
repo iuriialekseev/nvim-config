@@ -9,11 +9,16 @@ return {
       ensure_installed = {
         'bash',
         'css',
+        'go',
         'graphql',
         'html',
+        'htmldjango',
+        'java',
         'javascript',
         'json',
         'lua',
+        'markdown',
+        'python',
         'ruby',
         'rust',
         'scss',
@@ -24,6 +29,7 @@ return {
       },
       highlight = { enable = true },
       endwise = { enable = true },
+      indent = { enable = true }
     })
   end
 }

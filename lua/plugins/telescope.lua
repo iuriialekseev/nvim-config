@@ -13,9 +13,7 @@ return {
   config = function()
     local o = vim.o
     local telescope = require('telescope')
-    local lga_actions = require(
-      'telescope-live-grep-args.actions'
-    )
+    local lga_actions = require('telescope-live-grep-args.actions')
 
     telescope.setup({
       defaults = {
