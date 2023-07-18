@@ -25,21 +25,34 @@ map('n', '<leader>C', ':%bd!|e#|bd!#<cr>', opts)
 
 -- quickfix
 map('n', '<leader>q', ':copen | resize 10<cr>', opts)
-map('n', ']q', ':cnext<cr>', opts)
-map('n', '[q', ':cprev<cr>', opts)
+map('n', ']q', ':cnext<cr>zz', opts)
+map('n', '[q', ':cprev<cr>zz', opts)
 
--- copy local path to the clipboard
-local copy_path = function(line)
+local copy_path = function()
   local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ':~:.')
-  if line then
-    path = path .. ":" .. vim.fn.line('.')
-  end
   vim.fn.setreg("+", path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end
 
-local copy_path_without_line = function() copy_path() end
-local copy_path_with_line = function() copy_path(true) end
+local copy_path_line = function()
+  local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ':~:.')
+  path = path .. ":" .. vim.fn.line('.')
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
+end
 
-map('n', '<leader>p', copy_path_without_line, opts)
-map('n', '<leader>P', copy_path_with_line, opts)
+local copy_path_i18n = function()
+  local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ':~:.')
+  path = string.gsub(path, 'app/views/', '')
+  path = string.gsub(path, '/_', '.') -- partials
+  path = string.gsub(path, '/', '.')
+  path = string.gsub(path, '.html', '')
+  path = string.gsub(path, '.haml', '')
+  path = "t('" .. path .. "')"
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
+end
+
+map('n', '<leader>p', copy_path, opts)
+map('n', '<leader>P', copy_path_line, opts)
+map('n', '<leader>Y', copy_path_i18n, opts)

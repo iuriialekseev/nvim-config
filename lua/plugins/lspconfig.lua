@@ -54,6 +54,13 @@ return {
       cmp_nvim_lsp.default_capabilities()
     )
 
+    local function execute_command(command)
+      vim.lsp.buf.execute_command({
+        command = command,
+        arguments = { vim.api.nvim_buf_get_name(0) },
+      })
+    end
+
     lspconfig.pyright.setup {}
 
     lspconfig.solargraph.setup {
@@ -86,9 +93,31 @@ return {
       },
     }
 
-    lspconfig.taplo.setup {}
-    lspconfig.tsserver.setup {}
+    lspconfig.tsserver.setup {
+      commands = {
+        TypescriptOrganizeImports = {
+          function()
+            execute_command("_typescript.organizeImports")
+          end,
+        },
+        TypescriptAddMissingImports = {
+          function()
+            execute_command("_typescript.addMissingImports")
+          end,
+        },
+        TypescriptFixAll = {
+          function()
+            execute_command("_typescript.fixAll")
+          end,
+        },
+        TypescriptRemoveUnused = {
+          function()
+            execute_command("_typescript.removeUnused")
+          end,
+        }
+      }
+    }
+
     lspconfig.gopls.setup {}
-    lspconfig.rust_analyzer.setup {}
   end,
 }

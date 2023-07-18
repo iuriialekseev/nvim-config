@@ -4,8 +4,11 @@ return {
     'nvim-telescope/telescope.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
-  ft = 'yaml',
+  event = 'VeryLazy',
   keys = {
     { '<leader>y', ':YAMLYankKey +<cr>' },
   },
+  config = function()
+    require('nvim-surround').setup({})
+  end
 }

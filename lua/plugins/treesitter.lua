@@ -9,10 +9,10 @@ return {
       ensure_installed = {
         'bash',
         'css',
+        'elixir',
         'go',
         'graphql',
         'html',
-        'htmldjango',
         'java',
         'javascript',
         'json',

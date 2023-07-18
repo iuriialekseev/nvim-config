@@ -15,7 +15,7 @@ return {
         root_folder_label = false,
       },
       view = {
-        -- adaptive_size = true,
+        adaptive_size = true,
       },
       live_filter = {
         prefix = ' > ',

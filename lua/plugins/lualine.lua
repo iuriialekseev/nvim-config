@@ -6,7 +6,7 @@ return {
   config = function()
     require('lualine').setup({
       options = {
-        theme = 'github_light_default',
+        theme = 'catppuccin',
         globalstatus = true,
       },
       sections = {
