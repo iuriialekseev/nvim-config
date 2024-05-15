@@ -119,5 +119,6 @@ return {
     }
 
     lspconfig.gopls.setup {}
+    lspconfig.terraformls.setup {}
   end,
 }
