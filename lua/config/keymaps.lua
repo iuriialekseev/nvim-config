@@ -141,4 +141,4 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 
-map('n', '<leader>o', ':!llmprompt %<CR><CR>')
+map('n', '<leader>o', ':!llm_prompt %<CR><CR>')

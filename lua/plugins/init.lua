@@ -232,6 +232,7 @@ return {
       end
 
       lspconfig.pyright.setup {}
+      lspconfig.kotlin_lsp.setup {}
 
       lspconfig.solargraph.setup {
         settings = {
