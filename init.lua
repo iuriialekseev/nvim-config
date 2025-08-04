@@ -15,4 +15,8 @@ require('config.settings')
 require('config.keymaps')
 require('config.filetypes')
 
-require('lazy').setup('plugins')
+require('lazy').setup({
+  spec = {
+    { import = 'plugins' },
+  },
+})
