@@ -9,7 +9,9 @@ return {
           'gopls', -- go
           'lua_ls', -- lua
           'pyright', -- python'
+          'rust_analyzer', -- rust
           'solargraph', -- ruby
+          'taplo', -- toml
           'ts_ls', -- js/ts
         },
       })

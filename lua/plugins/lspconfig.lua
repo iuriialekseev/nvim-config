@@ -44,15 +44,18 @@ return {
         end,
       })
 
-      local lspconfig = require('lspconfig')
-      local lsp_defaults = lspconfig.util.default_config
       local cmp_nvim_lsp = require('cmp_nvim_lsp')
+      local lsp = vim.lsp
+      local base_capabilities = vim.lsp.protocol.make_client_capabilities()
+      local default_capabilities = lsp.config['*'] and lsp.config['*'].capabilities
 
-      lsp_defaults.capabilities = vim.tbl_deep_extend(
-        'force',
-        lsp_defaults.capabilities,
-        cmp_nvim_lsp.default_capabilities()
-      )
+      if default_capabilities then
+        base_capabilities = vim.tbl_deep_extend('force', base_capabilities, default_capabilities)
+      end
+
+      lsp.config('*', {
+        capabilities = cmp_nvim_lsp.default_capabilities(base_capabilities),
+      })
 
       local function execute_command(command)
         vim.lsp.buf.execute_command({
@@ -61,19 +64,17 @@ return {
         })
       end
 
-      lspconfig.pyright.setup {}
-
-      lspconfig.solargraph.setup {
+      lsp.config('solargraph', {
         settings = {
           solargraph = {
             diagnostics = false,
             formatting = true,
             useBundler = true,
-          }
-        }
-      }
+          },
+        },
+      })
 
-      lspconfig.lua_ls.setup {
+      lsp.config('lua_ls', {
         settings = {
           Lua = {
             runtime = {
@@ -91,9 +92,9 @@ return {
             },
           },
         },
-      }
+      })
 
-      lspconfig.ts_ls.setup {
+      lsp.config('ts_ls', {
         commands = {
           TypescriptOrganizeImports = {
             function()
@@ -114,9 +115,21 @@ return {
             function()
               execute_command("_typescript.removeUnused")
             end,
-          }
-        }
+          },
+        },
+      })
+
+      local servers = {
+        'pyright',
+        'solargraph',
+        'lua_ls',
+        'ts_ls',
+        'gopls',
+        'terraformls',
       }
-      lspconfig.gopls.setup {}
+
+      for _, server in ipairs(servers) do
+        lsp.enable(server)
+      end
     end,
   }

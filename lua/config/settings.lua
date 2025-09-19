@@ -35,6 +35,9 @@ opt.cursorline = true
 -- completion options for insert mode
 opt.completeopt = 'menu,menuone,noselect'
 
+opt.timeout = true
+opt.timeoutlen = 300
+
 -- yank will copy to clipboard
 opt.clipboard = 'unnamedplus'
 

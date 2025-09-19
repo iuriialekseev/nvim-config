@@ -9,19 +9,12 @@ return {
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
     },
-    config = function()
+    opts = function()
       local cmp = require('cmp')
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local lspkind = require('lspkind')
       local luasnip = require('luasnip')
+      local lspkind = require('lspkind')
 
-      lspkind.init({
-        symbol_map = {
-          Copilot = "",
-        },
-      })
-
-      cmp.setup({
+      return {
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -59,22 +52,24 @@ return {
           end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
-          { name = 'copilot' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
           { name = 'buffer' },
-        })
-      })
+        }),
+      }
+    end,
+    config = function(_, opts)
+      local cmp = require('cmp')
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
+      cmp.setup(opts)
+
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
           { name = 'buffer' },
-        })
+        }),
       })
 
       cmp.setup.cmdline('/', {
@@ -82,7 +77,7 @@ return {
         sources = {
           { name = 'cmdline' },
           { name = 'buffer' },
-        }
+        },
       })
 
       cmp.setup.cmdline(':', {
@@ -91,7 +86,7 @@ return {
           { name = 'cmdline' },
           { name = 'path' },
           { name = 'buffer' },
-        })
+        }),
       })
-    end
+    end,
   }
